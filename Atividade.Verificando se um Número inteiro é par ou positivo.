@@ -1,0 +1,14 @@
+
+for i in range(5):
+ numero = int(input("Insira um número inteiro: "))
+
+ tipo_numero = "par" if numero % 2 == 0 else "ímpar"
+
+ if numero > 0:
+    tipo_valor = "positivo"
+ elif numero < 0:
+    tipo_valor = "negativo"
+ else:
+    tipo_valor = "zero"
+
+ print(f"O número {numero} é {tipo_numero} e {tipo_valor}.")
