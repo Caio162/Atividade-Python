@@ -1,0 +1,47 @@
+
+decodificar = {
+  '6': 'F',
+  '5': 'E',
+  '50': 'L',
+  '1': 'I',
+  '26': 'Z',
+  'MM': '2000',
+  'R': '18',
+}
+
+mensagem_codificada = '6550126MMR'
+
+def segmentar_mensagem(mensagem, dicionario):
+    segmentos = []
+    i = 0
+    while i < len(mensagem):
+        segmento_encontrado = None
+        for chave in sorted(dicionario.keys(), key=len, reverse=True):
+            if mensagem.startswith(chave, i):
+                segmento_encontrado = chave
+                break
+
+        if segmento_encontrado:
+            segmentos.append(segmento_encontrado)
+            i += len(segmento_encontrado)
+        else:
+            i += 1
+
+    return segmentos
+
+def main():
+    entrada_usuario = input("Digite o código codificado: ").strip()
+
+    if entrada_usuario == mensagem_codificada:
+        segmentos = segmentar_mensagem(mensagem_codificada, decodificar)
+
+        enigma = ''.join(decodificar[segmento] for segmento in segmentos)
+
+        enigma = enigma.replace("2000", " 20")
+
+        print("O código decodificado é:", enigma)
+    else:
+        print("Erro: O código digitado está incorreto.")
+
+if __name__ == "__main__":
+    main()
